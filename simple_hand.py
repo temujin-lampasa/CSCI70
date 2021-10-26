@@ -18,7 +18,7 @@ def up_card(hand):
     return hand[0]
 
 def add_card(hand, card):
-    hand.append(card)
+    return hand + [card]
 
 def total(hand):
     return reduce(add, hand)
