@@ -4,10 +4,12 @@ from simple_hand import (deal, new_hand, up_card, add_card, total)
 def stop_at_17(hand: List[int], opponent_up_card: int) -> bool:
     return total(hand) < 17
 
-def test_strategies(player_strategy: Callable,
-                    house_strategy: Callable,
-                    num_games: int) -> float:
-    pass
+def test_strategy(player_strategy: Callable,
+                  house_strategy: Callable,
+                  num_games: int) -> float:
+    """Play a game n times and return the fraction of games won."""
+    total_wins = sum([play_game(player_strategy, house_strategy) for _ in range(num_games)])
+    return total_wins/num_games    
 
 def play_hand(strategy: Callable, hand: List[int], opponent_up_card: int) -> List[int]:
     if total(hand) > 21:
