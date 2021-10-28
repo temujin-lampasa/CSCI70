@@ -2,7 +2,10 @@ from typing import List, Callable
 from simple_hand import (deal, new_hand, up_card, add_card, total)
 
 def stop_at_17(hand: List[int], opponent_up_card: int) -> bool:
-    return total(hand) < 17
+    return stop_at_n(hand, opponent_up_card, 17)
+
+def stop_at_n(hand: List[int], opponent_up_card: int, n: int) -> bool:
+    return total(hand) < n
 
 def test_strategy(player_strategy: Callable,
                   house_strategy: Callable,
@@ -34,3 +37,8 @@ def play_game(player_strategy: Callable, house_strategy: Callable) -> int:
         return 1   # House lost
     else:
         return 0   # Player lost
+
+
+if __name__ == "__main__":
+    r = test_strategy(stop_at_17, stop_at_17, 100_000)
+    print("Result:", r)
